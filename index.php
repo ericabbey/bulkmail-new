@@ -22,7 +22,12 @@
             <div class="mail_content">
                 <div class="mail-header">
                     <div class="mail-title">Compose Mail <i class="fa fa-pencil"></i></div>
-                    <div class="mail-form"></div>
+                    <div class="mail-form">
+                        <div class="send-message">
+                                <p  class="error-text">This is an error</p>
+                            </div>
+                        </div
+                    </div>
                     <div class="mail-links">
                         <a href="">
                             <div id="next-form" class="btn-mail blue">
@@ -45,6 +50,13 @@
                         </div>
                     </form>
                 </div>
+                <!-- <div class="mail-footer">
+                    <hr>
+                    <label id="cloak-file-input" for="anti-spam">Select Anti Spam File
+                        <input id="anti-spam" type="file" class="antiSpam">
+                    </label>
+                    <div class="asf-updater">No file selected or in cookies</div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -69,8 +81,16 @@
                 subject = form.children().children('#subject');
                 message = form.children().children().children('#message-box');
             console.log(subject.val())
-            if(subject.val() == '' || message.val() == ''){
-                subject.css('border', '1px solid red')
+            if(subject.val() == '' ){
+                subject.css('border', '1px solid red');
+                $('.send-message').addClass('error')
+                $('.send-message').children('p').text('Subject field is empty')
+                return
+            }else if(message.val() == ''){
+                $('.wysihtml5-sandbox').css('border', '1px solid red');
+                $('.send-message').addClass('error')
+                $('.send-message').children('p').text('Message field is empty')
+                return
             }else{
                 var content = {
                     'subject': subject.val(),
@@ -84,5 +104,24 @@
             }
         })
     </script>
+    <!-- <script>
+       var asf = document.getElementById('anti-spam')
+       asf.addEventListener("change", function(){
+        if (this.files || this.files[0]) {
+            console.log('foo')
+            var myFile = this.files[0];
+            var reader = new FileReader();
+            reader.addEventListener('loadend', function () {
+
+                var lines = this.result.split('\n');
+                // for(var line = 0; line < lines.length; line++){
+                // console.log(lines[line]);
+                // }
+                console.log(lines)
+            });
+            reader.readAsText(myFile);
+        };
+    })
+    </script> -->
 </body>
 </html> 

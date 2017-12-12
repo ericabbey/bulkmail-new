@@ -23,8 +23,10 @@
                 <div class="mail-header">
                     <div class="mail-title">Settings <i class="fa fa-gears"></i></div>
                     <div class="mail-form">
-
-                    </div>
+                        <div class="send-message">
+                                <p  class="error-text">This is an error</p>
+                            </div>
+                        </div>
                     <div class="mail-links">
                         <a href="">
                             <div id="next-form" class="btn-mail orange">
@@ -44,24 +46,24 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="to">Name:</label>
-                            <input type="text" class="form-control" id="to" tabindex="1" name="name">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" tabindex="1" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="to">Email:</label>
-                            <input type="email" class="form-control" id="to" tabindex="2" name="email">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" tabindex="2" name="email">
                         </div>
                         <div class="form-group">
-                            <label for="to">Password:</label>
-                            <input type="password" class="form-control" id="to" tabindex="3" name="pass">
+                            <label for="pass">Password:</label>
+                            <input type="password" class="form-control" id="pass" tabindex="3" name="pass">
                         </div>
                         <div class="form-group">
-                            <label for="to">Host:</label>
+                            <label for="host">Host:</label>
                             <input type="text" class="form-control" id="to" tabindex="4" name="host">
                         </div>
                         <div class="form-group">
                             <label for="to">Port:</label>
-                            <input type="text" class="form-control" id="to" tabindex="5" name="port">
+                            <input type="text" class="form-control" id="port" tabindex="5" name="port">
                         </div>
                         <div class="form-group checkbox">
                             <div class="checkBox">
@@ -92,7 +94,6 @@
             eleText.each(function(index, ele){
                 if(ele.value == ''){
                     errorCount += 1;
-                    ele.style.border = '1px solid red';
                 }else{
                     var name  = ele.name,
                         value = ele.value;
@@ -104,12 +105,49 @@
                 }
 
             })
-            console.log(configData)
+            if(errorCount != 6){
+                var port  = $('#port'),
+                    email = $('#email'),
+                    host  = $('#host'),
+                    pattern;
+                if(port.val() != ''){
+                    pattern = /[1-9]{3}/ 
+                    if(!pattern.test(port.val())){
+                        $('.send-message').addClass('error')
+                        $('.send-message').children('p').text('invalid port number')
+                        return
+                    }
+                }
+                if(email.val() != ''){
+                    pattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
+                    if(!pattern.test(email.val())){
+                        $('.send-message').addClass('error')
+                        $('.send-message').children('p').text('invalid email address')
+                        return
+                    }
+                }
+                // if(host.val() != ''){
+                //     pattern = /^([a-zA-Z0-9._%-]+\.[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
+                //     if(!pattern.test(host.val())){
+                //         $('.send-message').addClass('error')
+                //         $('.send-message').children('p').text('invalid host name')
+                //         return
+                //     }
+                // }
 
-            Cookies.set('config', JSON.stringify(configData), {
-                expires: 1
-            });
-            window.location.assign('http://localhost/blkmail/address.php')
+
+            }
+            if(errorCount == 5){
+                $('.send-message').addClass('warning')
+                $('.send-message').children('p').text('No change is detected')
+            }else{
+                Cookies.set('config', JSON.stringify(configData), {
+                    expires: 1
+                });
+                $('.send-message').addClass('success')
+                $('.send-message').children('p').text('Settings Saved successfully ...')
+            }
+
         })
     </script>
 

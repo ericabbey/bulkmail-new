@@ -35,7 +35,7 @@
         // $lang              = $_POST['req']['lang'];
         // $addrList           = explode(',',$_POST['req']['address']);
         // $newList            = '';
-
+        echo $content;
         
         // $themePath = '../templates/'.$lang.'/'.str_replace(' ', '_', $theme); 
         $useTemplate = false;

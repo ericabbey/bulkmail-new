@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="mail-env">
-            <?php require 'sidebar.php' ?> 
+            <?php require 'sidebar.php' ?>  
             <div class="mail_content">
                 <div class="mail-header">
                     <div class="mail-title">Address List <i class="fa fa-pencil"></i></div>
@@ -30,7 +30,7 @@
                             <div class="address-list-loader"> Extracting </div>
                             <input type="text" id="address" style="display: none;">
                         </div>
-                        <div class="error-message">
+                        <div class="send-message">
                             <p  class="error-text">This is an error</p>
                         </div>
                     </div>

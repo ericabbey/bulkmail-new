@@ -14,6 +14,7 @@ error_reporting(E_ALL);
 
 
     function sendmail($config, $data, $addrList, $theme){
+        echo 'sending';
         foreach($addrList as $addr){
             $mail = new PHPMailer;  
             $mail->CharSet =  "utf-8";
@@ -21,7 +22,7 @@ error_reporting(E_ALL);
             $mail->SMTPAuth = true;
             $mail->Username = $config['email'];
             $mail->Password = $config['pass'];
-            $mail->SMTPSecure = "ssl"; 
+            $mail->SMTPSecure = "tsl"; 
             $mail->Host = $config['host'];
             $mail->Port = $config['port'];
             $mail->From = $config['email'];

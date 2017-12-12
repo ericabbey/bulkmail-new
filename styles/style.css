@@ -93,17 +93,29 @@ h1 {
             display: none; }
         .mail_content .mail-header .mail-form .address-form .address-list-loader {
           display: inline-block; }
-      .mail_content .mail-header .mail-form .error-message {
+      .mail_content .mail-header .mail-form .send-message {
         display: none;
-        border: 2px solid red;
         padding: 5px 20px;
         min-width: 200px;
-        text-align: center;
-        background-color: #ffdede; }
-        .mail_content .mail-header .mail-form .error-message p {
+        text-align: center; }
+        .mail_content .mail-header .mail-form .send-message p {
           margin: 0; }
-        .mail_content .mail-header .mail-form .error-message.active {
-          display: inline-block; }
+        .mail_content .mail-header .mail-form .send-message.success {
+          display: inline-block;
+          border: 2px solid #33a71b;
+          background-color: #e7ffde; }
+        .mail_content .mail-header .mail-form .send-message.error {
+          display: inline-block;
+          border: 2px solid red;
+          background-color: #ffdede; }
+        .mail_content .mail-header .mail-form .send-message.prog {
+          display: inline-block;
+          border: 2px solid #0059ff;
+          background-color: #dee5ff; }
+        .mail_content .mail-header .mail-form .send-message.warning {
+          display: inline-block;
+          border: 2px solid #ffc400;
+          background-color: #fffdde; }
     .mail_content .mail-header .mail-links {
       width: 20%; }
       .mail_content .mail-header .mail-links .btn-blue {
@@ -257,6 +269,11 @@ h1 {
     background-color: #9e2525; }
     .btn-mail.fail:hover {
       background-color: #9e2525; }
+  .btn-mail.disabled {
+    cursor: not-allowed;
+    background-color: silver !important; }
+    .btn-mail.disabled:hover {
+      background-color: silver !important; }
 
 .form-control:focus {
   box-shadow: none; }
@@ -270,5 +287,23 @@ h1 {
   display: flex; }
   .checkbox div:nth-child(1) {
     margin: 0 20px; }
+
+.mail-footer {
+  padding: 20px; }
+
+#cloak-file-input {
+  background-color: #ff5900;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  display: inline-block; }
+
+#cloak-file-input input {
+  display: none; }
+
+.asf-updater {
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 16px; }
 
 /*# sourceMappingURL=style.css.map */

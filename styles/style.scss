@@ -119,18 +119,33 @@ h1{
                     display: inline-block;
                 }
             }
-            .error-message{
+            .send-message{
                 display: none;
-                border: 2px solid red;
                 padding: 5px 20px;
                 min-width: 200px;
                 text-align: center;
-                background-color: #ffdede;
                 p{
                     margin: 0
                 }
-                &.active{
+                &.success{
                     display: inline-block;
+                    border: 2px solid rgb(51, 167, 27);
+                    background-color: #e7ffde;
+                }
+                &.error{
+                    display: inline-block;
+                    border: 2px solid red;
+                    background-color: #ffdede;
+                }
+                &.prog{
+                    display: inline-block;
+                    border: 2px solid rgb(0, 89, 255);
+                    background-color: #dee5ff;
+                }
+                &.warning{
+                    display: inline-block;
+                    border: 2px solid rgb(255, 196, 0);
+                    background-color: #fffdde;
                 }
             }
         }
@@ -340,6 +355,13 @@ h1{
             background-color: rgb(158, 37, 37);
         }
     }
+    &.disabled{
+        cursor: not-allowed;
+        background-color: silver !important;
+        &:hover{
+            background-color: silver !important;
+        }
+    }
 }
 .form-control{
     &:focus{
@@ -359,4 +381,23 @@ h1{
     div:nth-child(1){
         margin: 0 20px;
     }
+}
+.mail-footer{
+    padding: 20px;
+}
+#cloak-file-input{
+    background-color: rgb(255, 89, 0);
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#cloak-file-input input{
+    display: none;
+}
+.asf-updater{
+    display: inline-block;
+    margin-left: 20px;
+    font-size: 16px;
 }
