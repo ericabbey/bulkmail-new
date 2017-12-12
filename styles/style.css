@@ -1,0 +1,274 @@
+* {
+  font-family: Arial, Helvetica, sans-serif; }
+
+h1 {
+  margin: 0; }
+
+.header {
+  background-color: whitesmoke;
+  border-bottom: 1px solid silver;
+  text-align: center;
+  color: #22476a;
+  padding: 5px; }
+
+.mail {
+  height: 100vh; }
+
+.mail-env {
+  display: flex; }
+
+.mail_sidebar {
+  width: 250px;
+  background-color: #e0eaf3;
+  height: calc(100vh - 65px); }
+  .mail_sidebar ul {
+    padding: 10px;
+    padding-top: 0; }
+    .mail_sidebar ul li {
+      list-style: none;
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid silver; }
+      .mail_sidebar ul li:not(.button):hover {
+        background-color: rgba(255, 255, 255, 0.65); }
+      .mail_sidebar ul li a {
+        text-decoration: none; }
+        .mail_sidebar ul li a div {
+          color: white; }
+          .mail_sidebar ul li a div.div-text {
+            text-align: left;
+            color: #696969;
+            font-size: 15px;
+            cursor: pointer; }
+            .mail_sidebar ul li a div.div-text:hover {
+              color: slategray; }
+      .mail_sidebar ul li div.btn-green {
+        background-color: green;
+        color: white;
+        transition: all .1s ease;
+        cursor: pointer;
+        border-radius: 3px;
+        color: white !important; }
+        .mail_sidebar ul li div.btn-green:hover {
+          background-color: #007300; }
+        .mail_sidebar ul li div.btn-green div {
+          display: inline-block; }
+        .mail_sidebar ul li div.btn-green .btn-text {
+          padding: 10px; }
+        .mail_sidebar ul li div.btn-green .btn-icon {
+          float: right;
+          background-color: rgba(0, 0, 0, 0.1);
+          height: 40px;
+          width: 44px;
+          line-height: 40px; }
+      .mail_sidebar ul li div.div-text {
+        text-align: left;
+        color: #696969;
+        font-size: 15px;
+        cursor: pointer; }
+        .mail_sidebar ul li div.div-text:hover {
+          color: slategray; }
+
+.mail_content {
+  width: calc(100% - 250px); }
+  .mail_content .mail-header {
+    display: flex;
+    border: 1px solid #ebebeb; }
+    .mail_content .mail-header .mail-title {
+      width: 20%;
+      font-size: 20px;
+      padding: 20px;
+      color: slategrey; }
+    .mail_content .mail-header .mail-form {
+      width: 60%;
+      padding: 20px; }
+      .mail_content .mail-header .mail-form .address-form {
+        display: inline-block;
+        margin-right: 20px; }
+        .mail_content .mail-header .mail-form .address-form #address_label {
+          background-color: #00bcd4;
+          padding: 7px;
+          color: white; }
+          .mail_content .mail-header .mail-form .address-form #address_label #address_list {
+            display: none; }
+        .mail_content .mail-header .mail-form .address-form .address-list-loader {
+          display: inline-block; }
+      .mail_content .mail-header .mail-form .error-message {
+        display: none;
+        border: 2px solid red;
+        padding: 5px 20px;
+        min-width: 200px;
+        text-align: center;
+        background-color: #ffdede; }
+        .mail_content .mail-header .mail-form .error-message p {
+          margin: 0; }
+        .mail_content .mail-header .mail-form .error-message.active {
+          display: inline-block; }
+    .mail_content .mail-header .mail-links {
+      width: 20%; }
+      .mail_content .mail-header .mail-links .btn-blue {
+        width: 100px;
+        height: 40px;
+        float: right;
+        background-color: #03A9F4;
+        color: white;
+        transition: all .1s ease;
+        cursor: pointer;
+        border-radius: 3px;
+        color: white !important;
+        margin-top: 10px; }
+        .mail_content .mail-header .mail-links .btn-blue:hover {
+          background-color: #0398db; }
+        .mail_content .mail-header .mail-links .btn-blue div {
+          display: inline-block; }
+        .mail_content .mail-header .mail-links .btn-blue .btn-text {
+          padding: 10px; }
+        .mail_content .mail-header .mail-links .btn-blue .btn-icon {
+          float: right;
+          background-color: rgba(0, 0, 0, 0.1);
+          height: 40px;
+          width: 34px;
+          line-height: 40px;
+          text-align: center; }
+  .mail_content .mail-compose {
+    padding: 20px; }
+    .mail_content .mail-compose .form-group {
+      position: relative;
+      border-bottom: 1px solid #ebebeb;
+      padding-bottom: 15px; }
+      .mail_content .mail-compose .form-group label {
+        position: absolute;
+        left: 10px;
+        top: 7px;
+        z-index: 10; }
+      .mail_content .mail-compose .form-group input {
+        border-color: transparent;
+        position: relative;
+        z-index: 5;
+        padding-left: 100px;
+        transition: all 300ms ease-in-out; }
+        .mail_content .mail-compose .form-group input:focus {
+          background: #f9f9f9;
+          border-color: #f4f4f4; }
+      .mail_content .mail-compose .form-group .compose-message-editor {
+        padding-top: 5px; }
+        .mail_content .mail-compose .form-group .compose-message-editor .wysihtml5-toolbar li:nth-child(3), .mail_content .mail-compose .form-group .compose-message-editor .wysihtml5-toolbar li:nth-child(4), .mail_content .mail-compose .form-group .compose-message-editor .wysihtml5-toolbar li:nth-child(5), .mail_content .mail-compose .form-group .compose-message-editor .wysihtml5-toolbar li:nth-child(6) {
+          display: none; }
+        .mail_content .mail-compose .form-group .compose-message-editor .wysihtml5-toolbar li {
+          margin-right: 8px !important; }
+  .mail_content .checkBox {
+    width: 20px;
+    position: relative;
+    margin: 10px auto; }
+    .mail_content .checkBox label {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fcfff4;
+      border-radius: 2px;
+      border: 1px solid #74bdf5; }
+      .mail_content .checkBox label:after {
+        content: '';
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        background: silver;
+        opacity: 0; }
+      .mail_content .checkBox label:hover::after {
+        opacity: 0.5; }
+    .mail_content .checkBox input[type=checkbox] {
+      visibility: hidden; }
+      .mail_content .checkBox input[type=checkbox]:checked + label:after {
+        opacity: 1; }
+  .mail_content .mail-table {
+    margin-bottom: 0;
+    background-color: transparent; }
+    .mail_content .mail-table thead tr th {
+      background: #ebebeb;
+      border: 0;
+      color: #666666;
+      vertical-align: middle;
+      border-bottom: 0; }
+      .mail_content .mail-table thead tr th .mail-select-options {
+        float: left;
+        padding-top: 5px; }
+      .mail_content .mail-table thead tr th .mail-pagination {
+        float: right; }
+        .mail_content .mail-table thead tr th .mail-pagination span {
+          color: rgba(102, 102, 102, 0.5); }
+        .mail_content .mail-table thead tr th .mail-pagination .btn-group {
+          margin-left: 5px; }
+          .mail_content .mail-table thead tr th .mail-pagination .btn-group a {
+            background-color: #FFF;
+            border-color: #FFF;
+            border-color: #ebebeb !important; }
+    .mail_content .mail-table tbody tr.list {
+      border-bottom: 1px solid #ededed; }
+    .mail_content .mail-table tbody tr .col-time, .mail_content .mail-table tbody tr .col-email {
+      color: slategrey; }
+
+.wysihtml5-editor {
+  background-color: red; }
+
+.btn-mail {
+  margin-left: 15px;
+  width: auto;
+  height: 40px;
+  float: right;
+  color: white;
+  transition: all .1s ease;
+  cursor: pointer;
+  border-radius: 3px;
+  color: white !important;
+  margin-top: 10px; }
+  .btn-mail div {
+    display: inline-block; }
+  .btn-mail .btn-text {
+    padding: 10px; }
+  .btn-mail .btn-icon {
+    float: right;
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 40px;
+    width: 34px;
+    line-height: 40px;
+    text-align: center; }
+  .btn-mail.blue {
+    background-color: #03A9F4; }
+    .btn-mail.blue:hover {
+      background-color: #0398db; }
+  .btn-mail.orange {
+    background-color: #f48c03; }
+    .btn-mail.orange:hover {
+      background-color: #db7e03; }
+  .btn-mail.success {
+    background-color: #499e25; }
+    .btn-mail.success:hover {
+      background-color: #499e25; }
+  .btn-mail.info {
+    background-color: #9e763a; }
+    .btn-mail.info:hover {
+      background-color: #9e763a; }
+  .btn-mail.fail {
+    background-color: #9e2525; }
+    .btn-mail.fail:hover {
+      background-color: #9e2525; }
+
+.form-control:focus {
+  box-shadow: none; }
+
+.settings .form-group {
+  border-bottom: none !important; }
+  .settings .form-group .static {
+    position: static !important; }
+
+.checkbox {
+  display: flex; }
+  .checkbox div:nth-child(1) {
+    margin: 0 20px; }
+
+/*# sourceMappingURL=style.css.map */

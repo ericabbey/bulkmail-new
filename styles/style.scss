@@ -1,0 +1,362 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    margin: 0;
+}
+.header{
+    background-color: whitesmoke;
+    border-bottom: 1px solid silver;
+    text-align: center;
+    color: rgb(34, 71, 106);
+    padding: 5px;
+}
+.mail{
+    // background-color: red;
+    height: 100vh;
+
+}
+.mail-env{
+    display: flex;
+}
+.mail_sidebar{
+    width: 250px;
+    background-color: rgb(224, 234, 243);
+    height: calc(100vh - 65px) ;
+    // display: inline-block;
+    ul{
+        padding: 10px;
+        padding-top: 0;
+        li{
+            list-style: none;
+            padding: 15px;
+            text-align: center;
+            &:not(.button):hover{
+                background-color: rgba(255, 255, 255, 0.65);
+            }
+            a{
+                text-decoration: none;
+                div{
+                    color: white ;
+                    &.div-text{
+                        text-align: left;
+                        color: #696969;
+                        font-size: 15px;
+
+                        cursor: pointer;
+                        &:hover{
+                            color: slategray;
+                        }
+                    }
+                }
+            }
+            div{
+                &.btn-green{
+                    background-color: green;
+                    color: white;
+                    transition: all .1s ease;
+                    cursor: pointer;
+                    border-radius: 3px;
+                    color: white !important;
+                    &:hover{
+                        background-color: #007300
+                    }
+                    div{
+                        display: inline-block
+                    }
+                    .btn-text{
+                        padding: 10px;
+                    }
+                    .btn-icon{
+                        float: right;
+                        background-color: transparentize($color: #000000, $amount: .9);
+                        height: 40px;
+                        width: 44px;
+                        line-height: 40px;
+                    }
+                }
+                &.div-text{
+                    text-align: left;
+                    color: #696969;
+                    font-size: 15px;
+                    cursor: pointer;
+                    &:hover{
+                        color: slategray;
+                    }
+                }
+            }
+            border-bottom: 1px solid silver;
+        }
+    }
+}
+.mail_content{
+    width: calc(100% - 250px);
+    // display: inline-block
+    .mail-header{
+        display: flex;
+        border: 1px solid #ebebeb;
+        .mail-title{
+            width: 20%;
+            font-size: 20px;
+            padding: 20px;
+            color: slategrey;
+        }
+        .mail-form{
+            width: 60%;
+            padding: 20px;
+            .address-form{
+                display: inline-block;
+                margin-right: 20px;
+                #address_label{
+                    background-color: #00bcd4;
+                    padding: 7px;
+                    color: white;
+                    #address_list{
+                        display: none;
+                    }
+                }
+                .address-list-loader{
+                    display: inline-block;
+                }
+            }
+            .error-message{
+                display: none;
+                border: 2px solid red;
+                padding: 5px 20px;
+                min-width: 200px;
+                text-align: center;
+                background-color: #ffdede;
+                p{
+                    margin: 0
+                }
+                &.active{
+                    display: inline-block;
+                }
+            }
+        }
+        .mail-links{
+            width: 20%;
+            .btn-blue{
+                width: 100px;
+                height: 40px;
+                float: right;
+                background-color: #03A9F4;
+                color: white;
+                transition: all .1s ease;
+                cursor: pointer;
+                border-radius: 3px;
+                color: white !important;
+                margin-top: 10px;
+                &:hover{
+                    background-color: #0398db
+                }
+                div{
+                    display: inline-block
+                }
+                .btn-text{
+                    padding: 10px;
+                }
+                .btn-icon{
+                    float: right;
+                    background-color: transparentize($color: #000000, $amount: .9);
+                    height: 40px;
+                    width: 34px;
+                    line-height: 40px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .mail-compose{
+        padding: 20px;
+        .form-group{
+            position: relative;
+            border-bottom: 1px solid #ebebeb;
+            padding-bottom: 15px;
+            label{
+                position: absolute;
+                left: 10px;
+                top: 7px;
+                z-index: 10;
+            }
+            input{
+                border-color: transparent;
+                position: relative;
+                z-index: 5;
+                padding-left: 100px;
+                transition: all 300ms ease-in-out;
+                &:focus{
+                    background: #f9f9f9;
+                    border-color: #f4f4f4;
+                }
+            }
+            .compose-message-editor{
+                padding-top: 5px;
+                .wysihtml5-toolbar{
+                    li:nth-child(3), li:nth-child(4), li:nth-child(5), li:nth-child(6){
+                        display: none;
+                    }
+                }
+                .wysihtml5-toolbar li {
+                    margin-right: 8px !important;
+                }
+            }
+        }
+    }
+    .checkBox {
+      width: 20px;
+      position: relative;
+      margin: 10px auto;
+      label {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fcfff4;
+        border-radius: 2px;
+        border: 1px solid #74bdf5;
+        &:after {
+          content: '';
+          width: 12px;
+          height: 12px;
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          background: silver;
+          opacity: 0;
+        }
+        &:hover::after {
+          opacity: 0.5;
+        }
+      }
+      input[type=checkbox] {
+        visibility: hidden;
+        &:checked + label:after {
+          opacity: 1;
+        }
+      }    
+    }
+    .mail-table{
+        margin-bottom: 0;
+        background-color: transparent;
+        thead{
+            tr{
+                th{
+                    background: #ebebeb;
+                    border: 0;
+                    color: #666666;
+                    vertical-align: middle;
+                    border-bottom: 0;
+                    .mail-select-options {
+                        float: left;
+                        padding-top: 5px;
+                    }
+                    .mail-pagination{
+                        float: right;
+                        span{
+                            color: rgba(102, 102, 102, 0.5);
+                        }
+                        .btn-group{
+                            margin-left: 5px;
+                            a{
+                                background-color: #FFF;
+                                border-color: #FFF;
+                                border-color: #ebebeb !important
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        tbody{
+            tr{
+                &.list{
+                    border-bottom: 1px solid #ededed;
+                }
+                .col-time, .col-email{
+                    color: slategrey;
+                }
+            }
+        }
+    }
+}
+.wysihtml5-editor{
+    background-color: red;
+}
+.btn-mail{
+    margin-left: 15px;
+    width: auto;
+    height: 40px;
+    float: right;
+    color: white;
+    transition: all .1s ease;
+    cursor: pointer;
+    border-radius: 3px;
+    color: white !important;
+    margin-top: 10px;
+    div{
+        display: inline-block
+    }
+    .btn-text{
+        padding: 10px;
+    }
+    .btn-icon{
+        float: right;
+        background-color: transparentize($color: #000000, $amount: .9);
+        height: 40px;
+        width: 34px;
+        line-height: 40px;
+        text-align: center;
+    }
+    &.blue{
+        background-color: #03A9F4;
+        &:hover{
+            background-color: #0398db
+        }
+    }
+    &.orange{
+        background-color: rgb(244, 140, 3);
+        &:hover{
+            background-color: #db7e03
+        }
+    }
+    &.success{
+        background-color: rgb(73, 158, 37);
+        &:hover{
+            background-color: rgb(73, 158, 37);
+        }
+    }
+    &.info{
+        background-color: rgb(158, 118, 58);
+        &:hover{
+            background-color: rgb(158, 118, 58);
+        }
+    }
+    &.fail{
+        background-color: rgb(158, 37, 37);
+        &:hover{
+            background-color: rgb(158, 37, 37);
+        }
+    }
+}
+.form-control{
+    &:focus{
+        box-shadow: none;
+    }
+}
+.settings{
+    .form-group{
+        border-bottom: none !important;
+        .static{
+            position: static !important;
+        }
+    }
+}
+.checkbox {
+    display: flex;
+    div:nth-child(1){
+        margin: 0 20px;
+    }
+}
