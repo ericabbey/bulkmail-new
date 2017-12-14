@@ -1,17 +1,11 @@
 <?php
-$conf['mail']['transport'] =  'SMPT';
-$conf['mail']['service']   =  'gmail';
 
 
-$conf['mail']['host']      =  'smtp.gmail.com';
-$conf['mail']['port']      =  '465';
-$conf['mail']['name']      =  'Bank of Ghana';
-$conf['mail']['pass']  =  'Cisco879';
-$conf['mail']['email']    =  'cybertest16@gmail.com';
+$conf['host']            =  'mail.gamingshed.co.uk';
+$conf['ssl']['port']     =  '465';
+$conf['tls']['port']     =  '587';
 
+$conf['sender']['name']  = 'Flexing Papa';  
+$conf['sender']['email'] =  'robbiehammett@gamingshed.co.uk';
+$conf['sender']['pass']  =  'Hummer64@';
 
-
-$conf['template']['default']  =  'no template';
-$conf['template']['lang']     =  ['english', 'french'];
-$conf['template']['themes']   =  ['Bank of America'];
-// $conf['template']['link']     =  'Http://facebook.com'

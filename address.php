@@ -44,12 +44,12 @@
                 <table class="table mail-table">
                         <thead> 
                             <tr> 
-                                <th width="5%"> 
+                                <!-- <th width="5%"> 
                                     <div class="checkBox">
                                         <input type="checkbox" value="None" id="checkBox" class="parentCheckbox" name="check" />
                                         <label for="checkBox"></label>
                                     </div>
-                                </th> 
+                                </th>  -->
                                 <th colspan="4"> 
                                     <div class="mail-select-options">Email Address</div> 
                                     <div class="mail-pagination" colspan="2"> 

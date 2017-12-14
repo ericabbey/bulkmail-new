@@ -147,6 +147,7 @@ h1{
                     border: 2px solid rgb(255, 196, 0);
                     background-color: #fffdde;
                 }
+                
             }
         }
         .mail-links{
@@ -332,9 +333,9 @@ h1{
         }
     }
     &.orange{
-        background-color: rgb(244, 140, 3);
+        background-color: rgb(245, 164, 58);
         &:hover{
-            background-color: #db7e03
+            background-color: #dd963a
         }
     }
     &.success{
@@ -386,7 +387,7 @@ h1{
     padding: 20px;
 }
 #cloak-file-input{
-    background-color: rgb(255, 89, 0);
+    background-color: #00bcd4;
     padding: 15px;
     color: white;
     cursor: pointer;

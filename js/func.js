@@ -10,11 +10,15 @@ imp.addEventListener("change",function(){
 
             inpBox.val(e.target.result);
             var arr = Box.val().split(',');
-            arr.forEach(function(item, index){  
+            arr.forEach(function(e,i){
+                arr[i] = e.trim()
+            })
+            validEmail = emailFilter(arr);
+            validEmail.forEach(function(item, index){  
                 console.log('today')
                 appendItem(item, index)
             })
-            sendList = arr;
+            sendList = validEmail;
             Checbox();
         });
 
@@ -26,19 +30,24 @@ $('.submit').on("click", function(e){
     e.preventDefault();
     if(!$(this).parent().hasClass('disabled')){
         if(sendList == null){
-            $('.send-message').addClass('error')
-            $('.send-message').children('p').text('There is no address to send mail')
+            message('error', 'There is no address to send mail')
        }else{
-           var dataArr = [],
-               content = Cookies.get('content'),
-               config  = Cookies.get('config');
+            var dataArr    = [],
+               content   = Cookies.get('content'),
+               senders    = Cookies.get('senders');
+               config = Cookies.get('config');
             dataArr.push({
                 messageContent: JSON.parse(content)
-           })
+            })
             dataArr.push({
                 addressList: sendList
-           })
-            if(config != undefined){
+            })
+            if(senders != undefined){
+                dataArr.push({
+                    sendersList: JSON.parse(senders)
+                })
+           }
+           if(config != undefined){
                 dataArr.push({
                     messageConfig: JSON.parse(config)
                 })
@@ -50,22 +59,28 @@ $('.submit').on("click", function(e){
                 data : {'data': dataArr},
                 beforeSend: function(){
                     console.log('sending')
-                    $('.send-message').addClass('prog')
-                    $('.send-message').children('p').text('Sending ...')
+                    message('prog', 'Sending ...')
                     $('.submit').text('Sending');
-                    $('.submit').parent().addClass('disabled')
+                    $('.submit').parent().addClass('disabled');
+                    $('.btn-mail').attr('class', 'btn-mail disabled');
+                    $('.addr-btn').html('sending');
                 },
                 success: function (res) {
-    
-                if(res == 1){
-                        $('.send-message').addClass('success')
-                        $('.send-message').children('p').text('successfully sent '+sendList.length+ 'emails')
+                    if(res == 1){
+                        message('success', 'successfully sent '+sendList.length+ ' emails');
+                        $('.btn-mail').attr('class', 'btn-mail success ');
+                        $('.addr-btn').html('success');
+                    }else{
+                        message('error', res)
+                        $('.btn-mail').attr('class', 'btn-mail fail ');
+                        $('.addr-btn').html('failed');
                     }
+                    $('.submit').text('Send');
+                    $('.submit').parent().removeClass('disabled')
                 },
                 error: function(res){
                   console.log(res)
-                  $('.send-message').addClass('fail')
-                  $('.send-message').children('p').text('OOps an error occured. Check console log')
+                  message('fail', 'OOps an error occured. Check console log')
                 }
             });
         }
@@ -76,18 +91,12 @@ $('.submit').on("click", function(e){
 
 function appendItem(item, index){
     // console.log(item)
-   var template = `<tr class="list">
-                        <td> 
-                            <div class="checkBox">
-                                <input type="checkbox" value="None" id="checkBox" name="check" class="childCheckbox"/>
-                                <label for="checkBox"></label>
-                            </div>
-                        </td> 
+   var template = `<tr class="list"> 
                         <td class="col-email" width=50%>
                             <p></p>${item}<p></p>
                         </td> 
                         <td class="col-tag"> 
-                            <p></p><div class="btn-mail success" style="margin: 0; float: left;"><div class="btn-text">Success</div></div> <p></p>
+                            <p></p><div class="btn-mail blue" style="margin: 0; float: left;"><div class="btn-text addr-btn">Send</div></div> <p></p>
                         </td> 
                         <td class="col-time"><p></p> -- : -- <p></p></td> 
                     </tr>`
@@ -119,4 +128,60 @@ function Checbox(){
             }
         }
     );
+}
+
+function emailFilter(arr){
+    message('prog', 'filtering your address')
+    var clean = removeDuplicate(arr)
+    var valids   = []
+    var invalids = []
+    clean.forEach(function(item, index){
+        var valid = validateEmail(item)
+        if(valid){
+            valids.push(item)
+        }else{
+            invalids.push(item)
+            handleWrongEmails(invalids)
+        }
+    })
+    return valids;
+}
+
+function removeDuplicate(arr){
+    var unique = arr.reduce(function(unique, value) {
+        return unique.indexOf(value) === -1 ? unique.concat([value]) : unique;
+      }, []);
+      return unique;
+}
+
+function countDuplicate(arr){
+    arr.reduce((count, item) => {
+        if (!count[item]) {
+          count[item] = 1;
+        } else {
+          count[item] = count[item] + 1;
+        }
+        console.log(count);
+      }, {});
+
+    // var duplicates;
+    // const counter = arr.reduce( (count, item) => {
+    //     count[item] = (count[item] || 0) + 1 ;
+    //     // if(count[item] > 1) duplicates += 1
+    //     console.log(count);
+    // } , {})
+}
+
+function validateEmail(item){
+    var pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+    var state = pattern.test(item)
+    return state
+}
+function handleWrongEmails(arr){
+    message('warning', '<strong>'+arr.length + '</strong> invalid emails detected')
+}
+function message(code, message){
+    $('.send-message').attr('class', 'send-message')
+    $('.send-message').addClass(code)
+    $('.send-message').children('p').html(message)
 }

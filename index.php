@@ -104,24 +104,5 @@
             }
         })
     </script>
-    <!-- <script>
-       var asf = document.getElementById('anti-spam')
-       asf.addEventListener("change", function(){
-        if (this.files || this.files[0]) {
-            console.log('foo')
-            var myFile = this.files[0];
-            var reader = new FileReader();
-            reader.addEventListener('loadend', function () {
-
-                var lines = this.result.split('\n');
-                // for(var line = 0; line < lines.length; line++){
-                // console.log(lines[line]);
-                // }
-                console.log(lines)
-            });
-            reader.readAsText(myFile);
-        };
-    })
-    </script> -->
 </body>
 </html> 

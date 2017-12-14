@@ -254,9 +254,9 @@ h1 {
     .btn-mail.blue:hover {
       background-color: #0398db; }
   .btn-mail.orange {
-    background-color: #f48c03; }
+    background-color: #f5a43a; }
     .btn-mail.orange:hover {
-      background-color: #db7e03; }
+      background-color: #dd963a; }
   .btn-mail.success {
     background-color: #499e25; }
     .btn-mail.success:hover {
@@ -292,7 +292,7 @@ h1 {
   padding: 20px; }
 
 #cloak-file-input {
-  background-color: #ff5900;
+  background-color: #00bcd4;
   padding: 15px;
   color: white;
   cursor: pointer;

@@ -13,19 +13,18 @@ error_reporting(E_ALL);
     require '../vendor/phpmailer/phpmailer/src/Exception.php';
 
 
-    function sendmail($config, $data, $addrList, $theme){
-        echo 'sending';
+    function sendmail($config, $data, $addrList, $senderlist, $theme){
         foreach($addrList as $addr){
             $mail = new PHPMailer;  
             $mail->CharSet =  "utf-8";
             $mail->IsSMTP();
             $mail->SMTPAuth = true;
-            $mail->Username = $config['email'];
-            $mail->Password = $config['pass'];
-            $mail->SMTPSecure = "tsl"; 
+            $mail->Username = $senderlist['email'];
+            $mail->Password = $senderlist['pass'];
+            $mail->SMTPSecure = "ssl"; 
             $mail->Host = $config['host'];
             $mail->Port = $config['port'];
-            $mail->From = $config['email'];
+            $mail->From = $senderlist['email'];
             $mail->FromName = $config['name'];
             $mail->AddAddress($addr);
             $mail->Subject = $data['header'];
@@ -36,21 +35,21 @@ error_reporting(E_ALL);
                 // require '../../templates/english/Bank_of_America';
                  $mail->Body = addTheme($data['header'], 'Http://facebook.com' , $data['msg']);
             }
-            $mail->SMTPDebug = 3;
+            $mail->SMTPDebug = 0;
             $mail->SMTPOptions = array(
                  'ssl' => array(
                      'verify_peer' => false,
                      'verify_peer_name' => false,
-                     'allow_self_signed' => true
+                     'allow_self_signed' => true 
                  )
              );
             //sam check
             if($mail->Send()){
                 
-                echo TRUE;
+                return TRUE;
             }
             else{
-                echo "Mail Error - >".$mail->ErrorInfo;
+                echo $mail->ErrorInfo;
             }
         }
 
