@@ -51,21 +51,26 @@
                             <input type="password" class="form-control" id="pass" tabindex="3" name="pass">
                         </div>
                         <div class="form-group checkbox">
-                            <div class="checkBox">
-                                <input type="checkbox" value="None" id="checkBox" name="check"  tabindex="6"/>
-                                <label for="checkBox"></label>
+                            <div class='switch'>
+                                <div class='smtp'>
+                                    <input checked id='ssl' name='smtp' type='radio' value='ssl' checked>
+                                    <label for='ssl'>ssl</label>
+                                </div>
+                                <div class='smtp'>
+                                    <input id='tls' name='smtp' type='radio' value='tls'>
+                                    <label for='tls'>tls</label>
+                                </div>
                             </div>
-                            <div for="">Overwrite with this data</div>
                         </div>
                     </form>
                 </div>
-                <div class="mail-footer">
+                <!-- <div class="mail-footer">
                     <hr>
                     <label id="cloak-file-input" for="senderList">Upload Sender Mail list
                         <input id="senderList" type="file" class="senderlist">
                     </label>
                     <div class="asf-updater">No file selected or in cookies</div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -87,6 +92,7 @@
                 eleEmail    = form.children().children('input[name="email"]'),
                 elePass     = form.children().children('input[name="pass"]'),
                 eleName     = form.children().children('input[name="name"]'),
+                eleSmtpSsl  = form.find('#ssl'),
                 eleCheckbox = form.children('.checkbox').children('.checkBox').children('#checkBox'),
                 eleText     = form.children().children('input:not([type="checkbox"])'),
 
@@ -100,13 +106,25 @@
                     errorCount += 1;
                 }
             })
-                
-            emailData.push({
-                email: eleEmail.val(),
-                password: elePass.val()
-            })
-
-            emailName = [{'name' : eleName.val()}]
+            if(eleEmail.val() != '' && elePass.val() != '') {
+                emailData.push({
+                    email: eleEmail.val(),
+                    password: elePass.val()
+                })
+            }
+            eleSmtp = 'tls'
+            if(eleSmtpSsl.prop("checked") == true){
+                eleSmtp = 'ssl';
+            }
+            console.log(eleSmtp)
+            if(eleName.val() != ''){
+                emailConfig = [{'name' : eleName.val(),
+                            'smtp' : eleSmtp
+                        }]
+            }else{
+                message('warning', 'the name field empty')
+                return;
+            }
 
             if(errorCount != 6){
                 var email = $('#email'),
@@ -114,8 +132,7 @@
                 if(email.val() != ''){
                     pattern = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$/
                     if(!pattern.test(email.val())){
-                        $('.send-message').addClass('error')
-                        $('.send-message').children('p').text('invalid email address')
+                        message('error','invalid email address')
                         return
                     }
                 }
@@ -131,8 +148,7 @@
 
             }
             if(errorCount == 5){
-                $('.send-message').addClass('warning')
-                $('.send-message').children('p').text('No change is detected')
+               message('warning', 'No change is detected')
             }else{
                 senderlist = emailData;
                 if(Cookies.get('senderlist')){
@@ -143,10 +159,9 @@
                 Cookies.set('senders', JSON.stringify(senderlist), {
                     expires: 1
                 });
-                $('.send-message').addClass('success')
-                $('.send-message').children('p').text('Settings Saved successfully ...')
+                message('success', 'Settings Saved successfully ...')
                 if(emailName != ''){
-                    Cookies.set('config', JSON.stringify(emailName), {
+                    Cookies.set('config', JSON.stringify(emailConfig), {
                     expires: 1
                 })
                 }
@@ -154,8 +169,13 @@
             console.log(Cookies.get('config'))
 
         })
+        function message(code, message){
+            $('.send-message').attr('class', 'send-message')
+            $('.send-message').addClass(code)
+            $('.send-message').children('p').html(message)
+        }
     </script>
-    <script>
+    <!-- <script>
        var asf = document.getElementById('senderList')
        asf.addEventListener("change", function(){
            // TODO: senderlist checker does not eleminate empty address
@@ -196,7 +216,7 @@
             reader.readAsText(myFile);
         };
     })
-    </script>
+    </script> -->
 
 </body>
 </html>
